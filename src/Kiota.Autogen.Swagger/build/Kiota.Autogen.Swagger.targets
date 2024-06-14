@@ -4,15 +4,14 @@
     <PropertyGroup>
         <ProjectPath>@(ProjectReference)</ProjectPath>
         <ProjectDllPath />
-<!--        <SwaggerVersion />-->
+        <SwaggerVersion />
     </PropertyGroup>
 
     <Target Name="Validate" BeforeTargets="DetermineProject">
         <Error Text="Multiple frameworks currently not supported" Condition="$(TargetFrameworks) != ''" />
     </Target>
-
-<!--    <Target Name="DetermineProject" BeforeTargets="Generation">-->
-    <Target Name="DetermineProject" BeforeTargets="BeforeBuild;BeforeRebuild">
+    
+    <Target Name="DetermineProject" BeforeTargets="DetermineSwagger">
         <Error Text="Client must reference to project" Condition="@(ProjectReference->Count()) == 0" />
         <Error Text="Client must reference to only one project" Condition="@(ProjectReference->Count()) != 1" />
 
@@ -21,11 +20,19 @@
         </MSBuild>
     </Target>
 
-<!--    <Target Name="Generation" BeforeTargets="BeforeBuild;BeforeRebuild">-->
-<!--        <DeterminePackageVersionTask Project="..\WebApplication1\WebApplication1.csproj" Package="Swashbuckle.AspNetCore">-->
-<!--            <Output TaskParameter="Version" PropertyName="SwaggerVersion" />-->
-<!--        </DeterminePackageVersionTask>-->
+    <Target Name="DetermineSwagger" BeforeTargets="BeforeBuild;BeforeRebuild">
+        <DeterminePackageVersionTask ProjectPath="$(ProjectPath)" PackageId="Swashbuckle.AspNetCore" FrameworkVersion="$(TargetFramework)">
+            <Output TaskParameter="Version" PropertyName="SwaggerVersion" />
+        </DeterminePackageVersionTask>
+        
+        <Error Text="Swashbuckle.AspNetCore not found in $(ProjectPath)" Condition="$(SwaggerVersion) == ''" />
+    </Target>
+    
+<!--    <Target Name="A" BeforeTargets="BeforeBuild;BeforeRebuild">-->
+<!--        <Message Text="$(TargetFramework)" Importance="high" />-->
+<!--    </Target>-->
 
+<!--    <Target Name="Generation" BeforeTargets="BeforeBuild;BeforeRebuild">-->
 <!--        <Exec Command="dotnet new tool-manifest &#45;&#45;force"/>-->
 
 <!--        <Exec Command="dotnet tool install SwashBuckle.AspNetCore.Cli &#45;&#45;version $(SwaggerVersion)"/>-->

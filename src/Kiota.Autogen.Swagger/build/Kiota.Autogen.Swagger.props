@@ -6,6 +6,6 @@
         <CustomTasksAssembly>$(CustomTasksFolder)\$(MSBuildThisFileName).dll</CustomTasksAssembly>
     </PropertyGroup>
 
-<!--    <UsingTask TaskName="$(MSBuildThisFileName).DeterminePackageVersionTask" AssemblyFile="$(CustomTasksAssembly)"/>-->
+    <UsingTask TaskName="$(MSBuildThisFileName).Tasks.DeterminePackageVersionTask" AssemblyFile="$(CustomTasksAssembly)"/>
 
 </Project>
