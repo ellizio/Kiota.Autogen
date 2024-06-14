@@ -7,6 +7,10 @@
 <!--        <SwaggerVersion />-->
     </PropertyGroup>
 
+    <Target Name="Validate" BeforeTargets="DetermineProject">
+        <Error Text="Multiple frameworks currently not supported" Condition="$(TargetFrameworks) != ''" />
+    </Target>
+
 <!--    <Target Name="DetermineProject" BeforeTargets="Generation">-->
     <Target Name="DetermineProject" BeforeTargets="BeforeBuild;BeforeRebuild">
         <Error Text="Client must reference to project" Condition="@(ProjectReference->Count()) == 0" />
