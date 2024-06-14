@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <CustomTasksFolder>$(MSBuildThisFileDirectory)..\lib\netstandard2.0</CustomTasksFolder>
+        <CustomTasksAssembly>$(CustomTasksFolder)\$(MSBuildThisFileName).dll</CustomTasksAssembly>
+    </PropertyGroup>
+
+<!--    <UsingTask TaskName="$(MSBuildThisFileName).DeterminePackageVersionTask" AssemblyFile="$(CustomTasksAssembly)"/>-->
+
+</Project>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    
+    <PropertyGroup>
+        <ProjectPath>@(ProjectReference)</ProjectPath>
+        <ProjectDllPath />
+<!--        <SwaggerVersion />-->
+    </PropertyGroup>
+
+<!--    <Target Name="DetermineProject" BeforeTargets="Generation">-->
+    <Target Name="DetermineProject" BeforeTargets="BeforeBuild;BeforeRebuild">
+        <Error Text="Client must reference to project" Condition="@(ProjectReference->Count()) == 0" />
+        <Error Text="Client must reference to only one project" Condition="@(ProjectReference->Count()) != 1" />
+
+        <MSBuild Projects="%(ProjectReference.Identity)" Targets="GetTargetPath" Properties="Configuration=$(Configuration);RuntimeIdentifier=$(RuntimeIdentifier)">
+            <Output TaskParameter="TargetOutputs" PropertyName="ProjectDllPath" />
+        </MSBuild>
+    </Target>
+
+<!--    <Target Name="Generation" BeforeTargets="BeforeBuild;BeforeRebuild">-->
+<!--        <DeterminePackageVersionTask Project="..\WebApplication1\WebApplication1.csproj" Package="Swashbuckle.AspNetCore">-->
+<!--            <Output TaskParameter="Version" PropertyName="SwaggerVersion" />-->
+<!--        </DeterminePackageVersionTask>-->
+
+<!--        <Exec Command="dotnet new tool-manifest &#45;&#45;force"/>-->
+
+<!--        <Exec Command="dotnet tool install SwashBuckle.AspNetCore.Cli &#45;&#45;version $(SwaggerVersion)"/>-->
+<!--        <Exec Command="dotnet swagger tofile &#45;&#45;output api.json $(ProjectDllPath) v1"/>-->
+
+<!--        <Exec Command="dotnet tool install Microsoft.OpenApi.Kiota &#45;&#45;version 1.15.0"/>-->
+<!--        <Exec Command="kiota generate -l CSharp -c WeatherClient -n KiotaTest2.Client -d api.json -o ./Client"/>-->
+<!--        -->
+<!--        <ItemGroup>-->
+<!--            <Compile Remove="Client/**/*.cs" />-->
+<!--            <Compile Include="Client/**/*.cs" />-->
+<!--        </ItemGroup>-->
+<!--    </Target>-->
+<!--    -->
+<!--    <Target Name="Cln" BeforeTargets="Generation">-->
+<!--        <Message Text="CLEAN BeforeGen" Importance="high" />-->
+<!--        <RemoveDir Directories="Client/" />-->
+<!--        <Delete Files="api.json" />-->
+<!--    </Target>-->
+</Project>

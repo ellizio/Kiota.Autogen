@@ -1,8 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="build\Kiota.Autogen.Swagger.props" PackagePath="build\" />
+        <Content Include="build\Kiota.Autogen.Swagger.targets" PackagePath="build\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.10.4" PrivateAssets="All" />
+    </ItemGroup>
 
 </Project>
