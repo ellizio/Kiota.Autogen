@@ -7,5 +7,6 @@
     </PropertyGroup>
 
     <UsingTask TaskName="$(MSBuildThisFileName).Tasks.DeterminePackageVersionTask" AssemblyFile="$(CustomTasksAssembly)"/>
+    <UsingTask TaskName="$(MSBuildThisFileName).Tasks.ParseSettingsTask" AssemblyFile="$(CustomTasksAssembly)"/>
 
 </Project>

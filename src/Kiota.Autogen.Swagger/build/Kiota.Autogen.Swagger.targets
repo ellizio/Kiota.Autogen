@@ -20,36 +20,43 @@
         </MSBuild>
     </Target>
 
-    <Target Name="DetermineSwagger" BeforeTargets="BeforeBuild;BeforeRebuild">
+    <Target Name="DetermineSwagger" BeforeTargets="InstallDotnetTools">
         <DeterminePackageVersionTask ProjectPath="$(ProjectPath)" PackageId="Swashbuckle.AspNetCore" FrameworkVersion="$(TargetFramework)">
             <Output TaskParameter="Version" PropertyName="SwaggerVersion" />
         </DeterminePackageVersionTask>
         
         <Error Text="Swashbuckle.AspNetCore not found in $(ProjectPath)" Condition="$(SwaggerVersion) == ''" />
     </Target>
-    
-<!--    <Target Name="A" BeforeTargets="BeforeBuild;BeforeRebuild">-->
-<!--        <Message Text="$(TargetFramework)" Importance="high" />-->
-<!--    </Target>-->
 
-<!--    <Target Name="Generation" BeforeTargets="BeforeBuild;BeforeRebuild">-->
-<!--        <Exec Command="dotnet new tool-manifest &#45;&#45;force"/>-->
+    <Target Name="InstallDotnetTools" BeforeTargets="ExtractOpenApi">
+        <Exec Command="dotnet new tool-manifest --force" />
+        <Exec Command="dotnet tool install SwashBuckle.AspNetCore.Cli --version $(SwaggerVersion)" />
+        <Exec Command="dotnet tool install Microsoft.OpenApi.Kiota --version $(Version)" />
+    </Target>
 
-<!--        <Exec Command="dotnet tool install SwashBuckle.AspNetCore.Cli &#45;&#45;version $(SwaggerVersion)"/>-->
-<!--        <Exec Command="dotnet swagger tofile &#45;&#45;output api.json $(ProjectDllPath) v1"/>-->
+    <Target Name="ExtractOpenApi" BeforeTargets="GenerateClient">
+        <ParseSettingsTask>
+            <Output TaskParameter="Settings" ItemName="Settings" />
+        </ParseSettingsTask>
+        <Exec Command="dotnet swagger tofile --output %(Settings.Version).json $(ProjectDllPath) %(Settings.Version)" />
+    </Target>
 
-<!--        <Exec Command="dotnet tool install Microsoft.OpenApi.Kiota &#45;&#45;version 1.15.0"/>-->
-<!--        <Exec Command="kiota generate -l CSharp -c WeatherClient -n KiotaTest2.Client -d api.json -o ./Client"/>-->
-<!--        -->
+    <Target Name="GenerateClient" BeforeTargets="BeforeBuild;BeforeRebuild">
+        <Exec Command="kiota generate -l CSharp -c %(Settings.Name) -n %(Settings.Namespace) -d %(Settings.Version).json -o ./%(Settings.Name)" />
+        <ItemGroup>
+            <Compile Remove="%(Settings.Name)/**/*.cs" />
+            <Compile Include="%(Settings.Name)/**/*.cs" />
+        </ItemGroup>
+    </Target>
+
+<!--    <Target Name="Clean" BeforeTargets="BeforeClean;BeforeBuild;BeforeRebuild;Validate">-->
 <!--        <ItemGroup>-->
-<!--            <Compile Remove="Client/**/*.cs" />-->
-<!--            <Compile Include="Client/**/*.cs" />-->
+<!--            <CleanDirectories Include="**/" />-->
+<!--            <CleanFiles Include="*.json"-->
+<!--                        Exclude="settings.json" />-->
 <!--        </ItemGroup>-->
-<!--    </Target>-->
-<!--    -->
-<!--    <Target Name="Cln" BeforeTargets="Generation">-->
-<!--        <Message Text="CLEAN BeforeGen" Importance="high" />-->
-<!--        <RemoveDir Directories="Client/" />-->
-<!--        <Delete Files="api.json" />-->
+<!--        -->
+<!--        <RemoveDir Directories="@(CleanDirectories)" />-->
+<!--        <Delete Files="@(CleanFiles)" />-->
 <!--    </Target>-->
 </Project>
