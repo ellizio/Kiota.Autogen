@@ -9,6 +9,7 @@
 
     <Target Name="Validate" BeforeTargets="DetermineProject">
         <Error Text="Multiple frameworks currently not supported" Condition="$(TargetFrameworks) != ''" />
+        <Error Text="gensettings.json not found" Condition="!Exists('gensettings.json')" />
     </Target>
     
     <Target Name="DetermineProject" BeforeTargets="DetermineSwagger">
@@ -49,14 +50,4 @@
         </ItemGroup>
     </Target>
 
-<!--    <Target Name="Clean" BeforeTargets="BeforeClean;BeforeBuild;BeforeRebuild;Validate">-->
-<!--        <ItemGroup>-->
-<!--            <CleanDirectories Include="**/" />-->
-<!--            <CleanFiles Include="*.json"-->
-<!--                        Exclude="settings.json" />-->
-<!--        </ItemGroup>-->
-<!--        -->
-<!--        <RemoveDir Directories="@(CleanDirectories)" />-->
-<!--        <Delete Files="@(CleanFiles)" />-->
-<!--    </Target>-->
 </Project>

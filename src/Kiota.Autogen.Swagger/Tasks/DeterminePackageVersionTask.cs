@@ -78,7 +78,9 @@ namespace Kiota.Autogen.Swagger.Tasks
         {
             [JsonPropertyName("framework")]
             public string Version { get; set; } = default!;
+
             public IEnumerable<Package>? TopLevelPackages { get; set; }
+
             public IEnumerable<Package>? TransitivePackages { get; set; }
         }
         

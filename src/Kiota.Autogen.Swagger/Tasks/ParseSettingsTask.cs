@@ -8,18 +8,13 @@ namespace Kiota.Autogen.Swagger.Tasks
 {
     public class ParseSettingsTask : Task
     {
-        private const string SettingsJsonFile = "settings.json";
+        private const string SettingsJsonFile = "gensettings.json";
 
         [Output] public ITaskItem[] Settings { get; set; } = default!;
         
         public override bool Execute()
         {
-            IReadOnlyCollection<Setting> settings;
-
-            if (File.Exists(SettingsJsonFile))
-                settings = DeserializeJson();
-            else
-                return false;
+            var settings = Deserialize();
 
             var output = new List<ITaskItem>(settings.Count);
             foreach (var setting in settings)
@@ -36,7 +31,7 @@ namespace Kiota.Autogen.Swagger.Tasks
             return true;
         }
 
-        private static IReadOnlyCollection<Setting> DeserializeJson()
+        private static IReadOnlyCollection<Setting> Deserialize()
         {
             using var sr = new FileStream(SettingsJsonFile, FileMode.Open);
             return JsonSerializer.Deserialize<List<Setting>>(sr, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
