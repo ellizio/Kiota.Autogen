@@ -1,0 +1,34 @@
+name: release
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+    
+env:
+  NUGET_DIRECTORY: ${{ github.workspace }}/nuget
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Pack
+      run: dotnet pack --configuration Release --output ${{ env.NUGET_DIRECTORY }}
+
+    - name: Publish
+      run: |
+        for file in $(find "${{ env.NUGET_DIRECTORY }}" -type f -name "*.nupkg"); do
+          dotnet nuget push "$file" --api-key "${{ secrets.GH_NUGET }}" --source https://nuget.pkg.github.com/ellizio/index.json --skip-duplicate
+        done
