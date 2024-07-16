@@ -4,6 +4,15 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
+        
+        <PackageId>Kiota.Autogen.Swagger</PackageId>
+        <Title>Kiota.Autogen.Swagger</Title>
+        <Version>1.15.0</Version>
+        <Authors>ellizio</Authors>
+        <Description>Description test</Description>
+        <PackageProjectUrl>https://github.com/ellizio/Kiota.Autogen</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/ellizio/Kiota.Autogen</RepositoryUrl>
+        <PackageTags>Kiota;OpenAPI;Client;Swagger;Generation;CodeGen</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
