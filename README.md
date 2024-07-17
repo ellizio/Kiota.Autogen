@@ -35,7 +35,7 @@
 </ItemGroup>
 ```
 5. Create a `gensettings.json` file with the following structure
-```yaml
+```jsonc
 [
   {
     "name": "WeatherClient", // API client name to be generated
