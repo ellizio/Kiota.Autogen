@@ -2,12 +2,6 @@
 
 <p align="center"> A set of libraries for auto-generating API clients using Kiota </p>
 
-<p align="center">
-  <a href="#" target="_blank">
-    <img src="#" alt="NuGet link">
-  </a>
-</p>
-
 ---
 
 ## Libraries list
