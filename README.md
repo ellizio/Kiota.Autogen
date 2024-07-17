@@ -6,7 +6,7 @@
 
 ## Libraries list
 
-- [![Kiota.Autogen.Swagger](https://buildstats.info/nuget/Swashbuckle.AspNetCore)](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) [Kiota.Autogen.Swagger](https://github.com/ellizio/Kiota.Autogen/tree/master/src/Kiota.Autogen.Swagger) for generating API client based on `Swashbuckle.AspNetCore`
+- [![Kiota.Autogen.Swagger](https://buildstats.info/nuget/Swashbuckle.AspNetCore)](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) [Kiota.Autogen.Swagger](src/Kiota.Autogen.Swagger) for generating API client based on `Swashbuckle.AspNetCore`
 
 ## Basic Usage
 
@@ -63,10 +63,10 @@
 
 ## Examples
 
-See more examples and extended usages [here](https://github.com/ellizio/Kiota.Autogen/tree/master/examples)
+See more examples and extended usages [here](examples)
 
 ## Additional References
 
-- [Changelog](https://github.com/ellizio/Kiota.Autogen/blob/master/CHANGELOG.md)
+- [Changelog](CHANGELOG.md)
 - [Kiota](https://github.com/microsoft/kiota)
 - [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
