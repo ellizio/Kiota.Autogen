@@ -60,10 +60,47 @@
 ```
 7. Pack `Class library` project
 8. Enjoy using API client
+```csharp
+using Microsoft.Kiota.Abstractions.Authentication;
+using Microsoft.Kiota.Http.HttpClientLibrary;
+using Weather.Client;
 
-## Examples
+using var httpClient = new HttpClient();
+httpClient.BaseAddress = new Uri("http://your_service_url");
 
-See more examples and extended usages [here](examples)
+var provider = new AnonymousAuthenticationProvider();
+using var adapter = new HttpClientRequestAdapter(provider, httpClient: httpClient);
+var client = new WeatherClient(adapter);
+
+var forecasts = await client.Weatherforecast.GetAsync();
+```
+
+See [full example](examples/basic_swagger)
+
+## Advanced Usage
+
+You can provide your own implementations of Microsoft.Kiota.Abstractions from the `Class library` project if you need\
+Usage:
+```csharp
+using Microsoft.Kiota.Abstractions.Authentication;
+using Microsoft.Kiota.Http.HttpClientLibrary;
+using Weather.Client;
+
+using var httpClient = new HttpClient();
+httpClient.BaseAddress = new Uri("http://your_service_url");
+
+var provider = new AnonymousAuthenticationProvider();
+using var adapter = new HttpClientRequestAdapter(provider, new WeatherParseNodeFactory(), new WeatherSerializationWriterFactory(), httpClient: httpClient);
+var client = new WeatherClient(adapter);
+
+var forecasts = await client.Weatherforecast.GetAsync();
+```
+
+See [full example](examples/advanced)
+
+## More Examples
+
+See more examples [here](examples)
 
 ## Additional References
 
