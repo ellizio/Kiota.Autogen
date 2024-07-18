@@ -1,8 +1,28 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        
+        <PackageId>Kiota.Autogen.Swagger</PackageId>
+        <Title>Kiota.Autogen.Swagger</Title>
+        <Version>1.15.0</Version>
+        <Authors>ellizio</Authors>
+        <Description>A package for auto-generating API clients based on Swashbuckle.AspNetCore using Kiota</Description>
+        <PackageProjectUrl>https://github.com/ellizio/Kiota.Autogen</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/ellizio/Kiota.Autogen</RepositoryUrl>
+        <PackageTags>Kiota;OpenAPI;Client;Swagger;Generation;CodeGen</PackageTags>
     </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="build\Kiota.Autogen.Swagger.props" PackagePath="build\" />
+        <Content Include="build\Kiota.Autogen.Swagger.targets" PackagePath="build\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.10.4" PrivateAssets="All" />
+      <PackageReference Include="System.Text.Json" Version="8.0.4" PrivateAssets="All" />
+    </ItemGroup>
 
 </Project>

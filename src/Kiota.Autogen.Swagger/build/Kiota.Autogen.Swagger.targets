@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    
+    <PropertyGroup>
+        <Autogen_ProjectPath>@(ProjectReference)</Autogen_ProjectPath>
+        <Autogen_ProjectDllPath />
+        <Autogen_SwaggerVersion />
+        <Autogen_KiotaVersion>1.15.0</Autogen_KiotaVersion>
+    </PropertyGroup>
+
+    <Target Name="Validate" BeforeTargets="DetermineProject">
+        <Error Text="Multiple frameworks currently not supported" Condition="$(TargetFrameworks) != ''" />
+        <Error Text="gensettings.json not found" Condition="!Exists('gensettings.json')" />
+    </Target>
+    
+    <Target Name="DetermineProject" BeforeTargets="DetermineSwagger">
+        <Error Text="Client must reference to project" Condition="@(ProjectReference->Count()) == 0" />
+        <Error Text="Client must reference to only one project" Condition="@(ProjectReference->Count()) != 1" />
+
+        <MSBuild Projects="%(ProjectReference.Identity)" Targets="GetTargetPath" Properties="Configuration=$(Configuration);RuntimeIdentifier=$(RuntimeIdentifier)">
+            <Output TaskParameter="TargetOutputs" PropertyName="Autogen_ProjectDllPath" />
+        </MSBuild>
+    </Target>
+
+    <Target Name="DetermineSwagger" BeforeTargets="InstallDotnetTools">
+        <DeterminePackageVersionTask ProjectPath="$(Autogen_ProjectPath)" PackageId="Swashbuckle.AspNetCore" FrameworkVersion="$(TargetFramework)">
+            <Output TaskParameter="Version" PropertyName="Autogen_SwaggerVersion" />
+        </DeterminePackageVersionTask>
+        
+        <Error Text="Swashbuckle.AspNetCore not found in $(Autogen_ProjectPath)" Condition="$(Autogen_SwaggerVersion) == ''" />
+    </Target>
+
+    <Target Name="InstallDotnetTools" BeforeTargets="ExtractOpenApi">
+        <Exec Command="dotnet new tool-manifest --force" />
+        <Exec Command="dotnet tool install SwashBuckle.AspNetCore.Cli --version $(Autogen_SwaggerVersion)" />
+        <Exec Command="dotnet tool install Microsoft.OpenApi.Kiota --version $(Autogen_KiotaVersion)" />
+    </Target>
+
+    <Target Name="ExtractOpenApi" BeforeTargets="GenerateClient">
+        <ParseSettingsTask>
+            <Output TaskParameter="Settings" ItemName="Settings" />
+        </ParseSettingsTask>
+        <Exec Command="dotnet swagger tofile --output %(Settings.Version).json $(Autogen_ProjectDllPath) %(Settings.Version)" />
+    </Target>
+
+    <Target Name="GenerateClient" BeforeTargets="BeforeBuild;BeforeRebuild">
+        <Exec Command="kiota generate -l CSharp -c %(Settings.Name) -n %(Settings.Namespace) -d %(Settings.Version).json -o ./%(Settings.Name)" />
+        <ItemGroup>
+            <Compile Remove="%(Settings.Name)/**/*.cs" />
+            <Compile Include="%(Settings.Name)/**/*.cs" />
+        </ItemGroup>
+    </Target>
+
+</Project>
