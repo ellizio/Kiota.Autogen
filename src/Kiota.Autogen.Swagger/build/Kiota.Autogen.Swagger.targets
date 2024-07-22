@@ -5,7 +5,7 @@
         <Autogen_ProjectPath>@(ProjectReference)</Autogen_ProjectPath>
         <Autogen_ProjectDllPath />
         <Autogen_SwaggerVersion />
-        <Autogen_KiotaVersion>1.15.0</Autogen_KiotaVersion>
+        <Autogen_KiotaVersion>1.16.0</Autogen_KiotaVersion>
     </PropertyGroup>
 
     <Target Name="Validate" BeforeTargets="DetermineProject">
@@ -40,7 +40,7 @@
         <ParseSettingsTask>
             <Output TaskParameter="Settings" ItemName="Settings" />
         </ParseSettingsTask>
-        <Exec Command="dotnet swagger tofile --output %(Settings.Version).json $(Autogen_ProjectDllPath) %(Settings.Version)" />
+        <Exec Command="dotnet swagger tofile --output %(Settings.Version).json &quot;$(Autogen_ProjectDllPath)&quot; %(Settings.Version)" />
     </Target>
 
     <Target Name="GenerateClient" BeforeTargets="BeforeBuild;BeforeRebuild">
