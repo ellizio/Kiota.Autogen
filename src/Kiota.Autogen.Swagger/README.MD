@@ -1,12 +1,6 @@
-# <p align="center"> Kiota.Autogen </p>
-
-<p align="center"> A set of libraries for auto-generating API clients using <a href="https://github.com/microsoft/kiota">Kiota</a> </p>
+[Kiota.Autogen.Swagger](https://github.com/ellizio/Kiota.Autogen) is a package for auto-generating API clients based on [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) using [Kiota](https://github.com/microsoft/kiota)
 
 ---
-
-## Libraries list
-
-- [![Kiota.Autogen.Swagger](https://buildstats.info/nuget/Kiota.Autogen.Swagger)](https://www.nuget.org/packages/Kiota.Autogen.Swagger/) [Kiota.Autogen.Swagger](src/Kiota.Autogen.Swagger) for generating API client based on [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
 
 ## Basic Usage
 
@@ -20,7 +14,7 @@
 3. Install `Kiota.Autogen.Swagger` with `PrivateAssets="All"`
 ```xml
 <ItemGroup>
-    <PackageReference Include="Kiota.Autogen.Swagger" Version="1.16.0" PrivateAssets="All" />
+    <PackageReference Include="Kiota.Autogen.Swagger" Version="1.15.0" PrivateAssets="All" />
 </ItemGroup>
 ```
 4. Install following `Kiota` packages
@@ -75,8 +69,6 @@ var client = new WeatherClient(adapter);
 var forecasts = await client.Weatherforecast.GetAsync();
 ```
 
-See [full example](examples/basic_swagger)
-
 ## Advanced Usage
 
 You can provide your own implementations of `Microsoft.Kiota.Abstractions` from the `Class library` project if you need\
@@ -96,14 +88,6 @@ var client = new WeatherClient(adapter);
 var forecasts = await client.Weatherforecast.GetAsync();
 ```
 
-See [full example](examples/advanced)
-
 ## More Examples
 
-See more examples [here](examples)
-
-## Additional References
-
-- [Changelog](CHANGELOG.md)
-- [Kiota](https://github.com/microsoft/kiota)
-- [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
+See more examples [here](https://github.com/ellizio/Kiota.Autogen-Examples)

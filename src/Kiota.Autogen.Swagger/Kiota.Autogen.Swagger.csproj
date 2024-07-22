@@ -4,16 +4,22 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
-        
+
         <PackageId>Kiota.Autogen.Swagger</PackageId>
         <Title>Kiota.Autogen.Swagger</Title>
-        <Version>1.15.0</Version>
+        <Version>1.16.0</Version>
         <Authors>ellizio</Authors>
         <Description>A package for auto-generating API clients based on Swashbuckle.AspNetCore using Kiota</Description>
         <PackageProjectUrl>https://github.com/ellizio/Kiota.Autogen</PackageProjectUrl>
         <RepositoryUrl>https://github.com/ellizio/Kiota.Autogen</RepositoryUrl>
         <PackageTags>Kiota;OpenAPI;Client;Swagger;Generation;CodeGen</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
 
     <ItemGroup>
         <Content Include="build\Kiota.Autogen.Swagger.props" PackagePath="build\" />
