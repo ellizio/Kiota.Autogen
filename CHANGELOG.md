@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.16.1]
+- Fixed `dotnet` command
+- Using Kiota 1.16.0
+
 ## [1.16.0]
 - Fixed `dotnet swagger tofile` command options
 - Using Kiota 1.16.0
