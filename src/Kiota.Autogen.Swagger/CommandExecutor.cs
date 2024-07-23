@@ -1,4 +1,5 @@
-using System.Diagnostics;
+using CliWrap;
+using CliWrap.Buffered;
 
 namespace Kiota.Autogen.Swagger;
 
@@ -6,27 +7,21 @@ public static class CommandExecutor
 {
     public static bool Execute(string command, out string output)
     {
-        var process = new Process
-        {
-            StartInfo = new("cmd", $"/c {command}")
-            {
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            }
-        };
+        var (target, args) = PrepareCommand(command);
+        var result = Cli.Wrap(target)
+            .WithArguments(args)
+            .ExecuteBufferedAsync().ConfigureAwait(false).GetAwaiter().GetResult();
 
-        try
-        {
-            process.Start();
-            output = process.StandardOutput.ReadToEnd();
-            return true;
-        }
-        catch
-        {
-            output = process.StandardError.ReadToEnd();
-            return false;
-        }
+        output = result.IsSuccess ? result.StandardOutput : result.StandardError;
+        return result.IsSuccess;
+    }
+
+    private static (string target, string args) PrepareCommand(string command)
+    {
+        var delimiterIndex = command.IndexOf(" ");
+        var target = command.Substring(0, delimiterIndex);
+        var args = command.Substring(delimiterIndex + 1, command.Length - delimiterIndex - 1);
+
+        return (target, args);
     }
 }
