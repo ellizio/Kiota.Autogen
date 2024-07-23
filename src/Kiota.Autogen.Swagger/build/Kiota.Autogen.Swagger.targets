@@ -44,7 +44,7 @@
     </Target>
 
     <Target Name="GenerateClient" BeforeTargets="BeforeBuild;BeforeRebuild">
-        <Exec Command="kiota generate -l CSharp -c %(Settings.Name) -n %(Settings.Namespace) -d %(Settings.Version).json -o ./%(Settings.Name)" />
+        <Exec Command="dotnet kiota generate -l CSharp -c %(Settings.Name) -n %(Settings.Namespace) -d %(Settings.Version).json -o ./%(Settings.Name)" />
         <ItemGroup>
             <Compile Remove="%(Settings.Name)/**/*.cs" />
             <Compile Include="%(Settings.Name)/**/*.cs" />

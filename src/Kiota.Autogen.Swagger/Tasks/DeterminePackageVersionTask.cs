@@ -19,7 +19,7 @@ namespace Kiota.Autogen.Swagger.Tasks
         
         public override bool Execute()
         {
-            var success = CommandExecutor.Execute($"dotnet list {ProjectPath} package --include-transitive --format json", out var output);
+            var success = CommandExecutor.Execute($"dotnet list \"{Path.GetFullPath(ProjectPath)}\" package --include-transitive --format json", out var output);
             if (!success)
             {
                 Log.LogError(output);
