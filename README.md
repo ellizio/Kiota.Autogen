@@ -20,7 +20,7 @@
 3. Install `Kiota.Autogen.Swagger` with `PrivateAssets="All"`
 ```xml
 <ItemGroup>
-    <PackageReference Include="Kiota.Autogen.Swagger" Version="1.16.0" PrivateAssets="All" />
+    <PackageReference Include="Kiota.Autogen.Swagger" Version="1.16.1" PrivateAssets="All" />
 </ItemGroup>
 ```
 4. Install following `Kiota` packages
@@ -75,7 +75,7 @@ var client = new WeatherClient(adapter);
 var forecasts = await client.Weatherforecast.GetAsync();
 ```
 
-See [full example](examples/basic_swagger)
+See [full example](https://github.com/ellizio/Kiota.Autogen-Examples/tree/master/1.%20Swagger)
 
 ## Advanced Usage
 
@@ -100,7 +100,7 @@ See [full example](examples/advanced)
 
 ## More Examples
 
-See more examples [here](examples)
+See more examples [here](https://github.com/ellizio/Kiota.Autogen-Examples)
 
 ## Additional References
 
