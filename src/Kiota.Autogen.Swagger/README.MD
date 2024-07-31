@@ -20,12 +20,12 @@
 4. Install following `Kiota` packages
 ```xml
 <ItemGroup>
-    <PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.9.10" />
-    <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.9.10" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Form" Version="1.9.10" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.9.10" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Multipart" Version="1.9.10" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Text" Version="1.9.10" />
+    <PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.9.11" />
+    <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.9.11" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Form" Version="1.9.11" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.9.11" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Multipart" Version="1.9.11" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Text" Version="1.9.11" />
 </ItemGroup>
 ```
 5. Create a `gensettings.json` file with the following structure
@@ -89,6 +89,8 @@ var client = new WeatherClient(adapter);
 
 var forecasts = await client.Weatherforecast.GetAsync();
 ```
+
+See [full example](https://github.com/ellizio/Kiota.Autogen-Examples/tree/master/2.%20Advanced)
 
 ## More Examples
 
