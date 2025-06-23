@@ -5,7 +5,7 @@
         <Autogen_ProjectPath>@(ProjectReference)</Autogen_ProjectPath>
         <Autogen_ProjectDllPath />
         <Autogen_SwaggerVersion />
-        <Autogen_KiotaVersion>1.16.0</Autogen_KiotaVersion>
+        <Autogen_KiotaVersion>1.17.0</Autogen_KiotaVersion>
     </PropertyGroup>
 
     <Target Name="Validate" BeforeTargets="DetermineProject">
