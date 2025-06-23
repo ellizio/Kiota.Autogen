@@ -29,5 +29,5 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with: 
-        name: 'Kiota.Autogen.Swagger.nupkg'
+        name: 'Kiota.Autogen.Swagger.nupkg.zip'
         path: ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
