@@ -1,0 +1,33 @@
+name: pack
+
+on:
+  workflow_dispatch:
+
+env:
+  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/package_output
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Prepare Environment
+      uses: ./.github/workflows/prepare-environment
+
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --configuration Release
+
+    - name: Pack
+      run: dotnet pack --configuration Release --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+      
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with: 
+        name: 'Kiota.Autogen.Swagger.nupkg'
+        path: ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
