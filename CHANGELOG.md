@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.17.0]
+- Using Kiota 1.17.0
+
 ## [1.16.1]
 - Fixed `dotnet` command
 - Using Kiota 1.16.0

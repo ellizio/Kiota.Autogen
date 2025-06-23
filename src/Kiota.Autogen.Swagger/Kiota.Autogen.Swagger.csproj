@@ -7,7 +7,7 @@
 
         <PackageId>Kiota.Autogen.Swagger</PackageId>
         <Title>Kiota.Autogen.Swagger</Title>
-        <Version>1.16.1</Version>
+        <Version>1.17.0</Version>
         <Authors>ellizio</Authors>
         <Description>A package for auto-generating API clients based on Swashbuckle.AspNetCore using Kiota</Description>
         <PackageProjectUrl>https://github.com/ellizio/Kiota.Autogen</PackageProjectUrl>
@@ -31,7 +31,7 @@
     <ItemGroup>
       <PackageReference Include="CliWrap" Version="3.6.6" PrivateAssets="All" />
       <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.10.4" PrivateAssets="All" />
-      <PackageReference Include="System.Text.Json" Version="8.0.4" PrivateAssets="All" />
+      <PackageReference Include="System.Text.Json" Version="8.0.5" PrivateAssets="All" />
     </ItemGroup>
 
     <Target Name="PackTaskDependencies" BeforeTargets="GenerateNuspec">

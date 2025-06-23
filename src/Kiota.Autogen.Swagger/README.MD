@@ -14,7 +14,7 @@
 3. Install `Kiota.Autogen.Swagger` with `PrivateAssets="All"`
 ```xml
 <ItemGroup>
-    <PackageReference Include="Kiota.Autogen.Swagger" Version="1.16.1" PrivateAssets="All" />
+    <PackageReference Include="Kiota.Autogen.Swagger" Version="1.17.0" PrivateAssets="All" />
 </ItemGroup>
 ```
 4. Install following `Kiota` packages

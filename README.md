@@ -6,7 +6,7 @@
 
 ## Libraries list
 
-- [![Kiota.Autogen.Swagger](https://buildstats.info/nuget/Kiota.Autogen.Swagger)](https://www.nuget.org/packages/Kiota.Autogen.Swagger/) [Kiota.Autogen.Swagger](src/Kiota.Autogen.Swagger) for generating API client based on [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
+- [![](https://img.shields.io/nuget/dt/Kiota.Autogen.Swagger?logo=nuget&color=007edf)](https://www.nuget.org/packages/Kiota.Autogen.Swagger/) [Kiota.Autogen.Swagger](src/Kiota.Autogen.Swagger) for generating API client based on [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
 
 ## Basic Usage
 
@@ -20,7 +20,7 @@
 3. Install `Kiota.Autogen.Swagger` with `PrivateAssets="All"`
 ```xml
 <ItemGroup>
-    <PackageReference Include="Kiota.Autogen.Swagger" Version="1.16.1" PrivateAssets="All" />
+    <PackageReference Include="Kiota.Autogen.Swagger" Version="1.17.0" PrivateAssets="All" />
 </ItemGroup>
 ```
 4. Install following `Kiota` packages
