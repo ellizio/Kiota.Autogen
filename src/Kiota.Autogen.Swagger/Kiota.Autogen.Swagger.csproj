@@ -7,7 +7,7 @@
 
         <PackageId>Kiota.Autogen.Swagger</PackageId>
         <Title>Kiota.Autogen.Swagger</Title>
-        <Version>1.17.0</Version>
+        <Version>1.18.0</Version>
         <Authors>ellizio</Authors>
         <Description>A package for auto-generating API clients based on Swashbuckle.AspNetCore using Kiota</Description>
         <PackageProjectUrl>https://github.com/ellizio/Kiota.Autogen</PackageProjectUrl>

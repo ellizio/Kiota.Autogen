@@ -20,18 +20,18 @@
 3. Install `Kiota.Autogen.Swagger` with `PrivateAssets="All"`
 ```xml
 <ItemGroup>
-    <PackageReference Include="Kiota.Autogen.Swagger" Version="1.17.0" PrivateAssets="All" />
+    <PackageReference Include="Kiota.Autogen.Swagger" Version="1.18.0" PrivateAssets="All" />
 </ItemGroup>
 ```
 4. Install following `Kiota` packages
 ```xml
 <ItemGroup>
-    <PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.9.11" />
-    <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.9.11" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Form" Version="1.9.11" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.9.11" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Multipart" Version="1.9.11" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Text" Version="1.9.11" />
+    <PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.12.4" />
+    <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.12.4" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Form" Version="1.12.4" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.12.4" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Multipart" Version="1.12.4" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Text" Version="1.12.4" />
 </ItemGroup>
 ```
 5. Create a `gensettings.json` file with the following structure
