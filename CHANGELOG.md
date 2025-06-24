@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.18.0]
+- Using Kiota 1.18.0
+
 ## [1.17.0]
 - Using Kiota 1.17.0
 
